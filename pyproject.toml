@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "casdoor-dify-plugin"
+version = "0.1.0"
+description = ""
+authors = ["MohmdFo <mohammad.fotouhi80@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.11"
+uvicorn = "^0.34.0"
+casdoor = "^1.28.0"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
