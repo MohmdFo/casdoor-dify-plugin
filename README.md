@@ -1,40 +1,40 @@
 # Casdoor Dify Plugin
 
 ## Overview
-This package integrates Casdoor OAuth-based authentication into a Dify plugin, enabling seamless user authentication within the Dify ecosystem. The project leverages FastAPI for handling OAuth endpoints and uses a set of provider and tool manifest files to register the plugin with Dify.
+The Casdoor Dify Plugin integrates Casdoor OAuth-based authentication into the Dify ecosystem as an extension plugin. It provides endpoints to handle OAuth login, signup, and callback flows, enabling seamless user authentication via Casdoor.
 
 ## Features
-- **OAuth Authentication:** Implements login, signup, and callback endpoints for Casdoor-based authentication.
-- **Dify Plugin Integration:** Provides Dify provider and tool manifests, along with corresponding Python code for integration.
-- **Configuration via Environment Variables:** Loads sensitive data (certificates, client IDs, secrets, etc.) from a `.env` file.
-- **Dependency Management:** Uses Poetry for managing dependencies and virtual environments.
-- **Customizable Assets:** Includes a plugin icon for visual identification in the Dify interface.
+- **OAuth Authentication:**  
+  Implements login, signup, and callback endpoints to facilitate the Casdoor OAuth flow.
+- **Dify Plugin Integration:**  
+  Uses a plugin manifest and endpoint YAML definitions to register the plugin with Dify.
+- **Environment-Based Configuration:**  
+  Loads sensitive credentials (certificates, client IDs, secrets, etc.) from a `.env` file.
+- **Local Testing with Flask:**  
+  Includes a Flask-based server (`main.py`) for local development and testing.
 
 ## Project Structure
 ```
-casdoor-dify-plugin/
-├── assets/
-│   └── icon.png                # Plugin icon asset
-├── main.py                     # FastAPI application for local testing
-├── .env                        # Environment configuration file
-├── poetry.lock                 # Poetry lock file for dependency management
-├── pyproject.toml              # Poetry project configuration
-├── provider/
-│   ├── __init__.py             # Provider package initialization
-│   ├── casdoor.yaml            # Provider manifest for Dify integration
-│   └── casdoor_plugin.py       # Provider code for credential validation
-├── tools/
-│   ├── __init__.py             # Tools package initialization
-│   ├── casdoor_auth.py         # Tool implementation for generating OAuth URLs
-│   └── casdoor_auth.yaml       # Tool manifest for Dify integration
-└── README.md                   # Project documentation
+.
+├── GUIDE.md                   # Quick start guide for plugin development
+├── README.md                  # Project documentation
+├── _assets
+│   └── icon.svg               # Plugin icon asset
+├── endpoints
+│   ├── casdoor_auth.py         # Casdoor OAuth logic implementation
+│   ├── casdoor_login.yaml      # Endpoint manifest for login
+│   ├── casdoor_signup.yaml     # Endpoint manifest for signup
+│   └── casdoor_callback.yaml   # Endpoint manifest for callback
+├── main.py                    # Entry point for local testing (Flask server)
+├── manifest.yaml              # Plugin manifest for Dify integration
+└── requirements.txt           # Python dependencies list
 ```
 
 ## Prerequisites
 - **Python:** Version 3.12 or higher.
 - **Poetry:** For dependency management. ([Installation Guide](https://python-poetry.org/docs/))
-- **python-dotenv:** For loading environment variables. Install with `pip install python-dotenv`.
-- **Dify Plugin Scaffolding Tool:** (Optional) To further develop and test your Dify plugin.
+- **Dify Plugin Scaffolding Tool:** (Optional) For further development and testing on the Dify platform.
+- **Environment Variables:** A `.env` file containing your Casdoor credentials is required.
 
 ## Installation
 1. **Clone the Repository:**
@@ -52,39 +52,42 @@ Create a `.env` file in the project root and populate it with your Casdoor crede
 ```env
 CASDOOR_CERT="-----BEGIN CERTIFICATE-----
 -----END CERTIFICATE-----"
-CASDOOR_ENDPOINT=https://yourendpoint.example/
+CASDOOR_ENDPOINT=https://your-casdoor-endpoint.example
 CASDOOR_CLIENT_ID=your_client_id
 CASDOOR_CLIENT_SECRET=your_client_secret
-CASDOOR_ORG_NAME=your-organization-name
-CASDOOR_APP_NAME=your-app-name
+CASDOOR_ORG_NAME=your_organization_name
+CASDOOR_APP_NAME=your_app_name
 ```
 
-## Running the Application
-To run the FastAPI application locally for testing, execute:
+## Running the Plugin Locally
+For local testing, run the Flask server with:
 ```bash
-poetry run uvicorn main:app --reload
+poetry run python main.py
 ```
-Access the following endpoints in your browser:
-- **/login:** Initiates the OAuth login flow.
-- **/signup:** Initiates the OAuth signup flow.
-- **/callback:** Handles the OAuth callback and token exchange.
+This starts the server on `http://0.0.0.0:8000`.
+
+## Testing the Endpoints
+- **Login Endpoint:**  
+  Navigate to [http://localhost:8000/casdoor/login](http://localhost:8000/casdoor/login) to initiate the Casdoor OAuth login flow.
+- **Signup Endpoint:**  
+  Visit [http://localhost:8000/casdoor/signup](http://localhost:8000/casdoor/signup) to start the signup process.
+- **Callback Endpoint:**  
+  After authentication, Casdoor redirects to [http://localhost:8000/casdoor/callback](http://localhost:8000/casdoor/callback). This endpoint exchanges the authorization code for tokens and parses the JWT.
 
 ## Dify Plugin Integration
-This repository also contains the necessary manifests and code to integrate the Casdoor authentication as a Dify plugin:
-- **Provider Integration:**  
-  - `provider/casdoor.yaml`: Defines provider metadata, credentials, and tool references.  
-  - `provider/casdoor_plugin.py`: Implements credential validation and provider logic.
-- **Tool Integration:**  
-  - `tools/casdoor_auth.yaml`: Specifies tool identity, description, and parameters.  
-  - `tools/casdoor_auth.py`: Contains the tool logic to generate OAuth URLs based on provided actions.
+This repository is structured as a Dify extension plugin:
+- **Manifest File (`manifest.yaml`):**  
+  Contains metadata and required permissions for plugin registration with Dify.
+- **Endpoint YAML Files (in `endpoints/`):**  
+  Define the API paths and HTTP methods for login, signup, and callback endpoints.
 
-For further integration details and registration with Dify, please refer to the [Dify Plugin Documentation](https://docs.dify.ai/plugins/quick-start/develop-plugins/tool-plugin).
+For more details on developing and integrating plugins with Dify, please refer to the [Dify Plugin Documentation](https://docs.dify.ai/plugins/quick-start/develop-plugins/extension-plugin).
 
 ## Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your changes. For major changes, open an issue first to discuss your ideas.
+Contributions are welcome! Fork the repository and submit pull requests for any improvements. For significant changes, please open an issue to discuss your ideas first.
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
-For questions or support, please contact [Mohammad Fotouhi](mailto:your.mohammad.fotouhi80@gmail.com).
+For questions or support, please contact [Mohammad Fotouhi](mailto:mohammad.fotouhi80@gmail.com).
