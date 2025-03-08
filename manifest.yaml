@@ -1,0 +1,10 @@
+name: casdoor_auth_plugin
+version: 0.1.0
+description: "A Dify extension plugin for Casdoor OAuth authentication."
+author: "MohmdFo <mohammad.fotouhi80@gmail.com>"
+permissions:
+  - Tools
+  - LLMs
+  - Apps
+  - persistent_storage
+  - endpoint_registration
