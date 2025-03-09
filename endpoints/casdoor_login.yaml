@@ -1,6 +1,0 @@
-path: "/casdoor/login"
-method: "GET"
-extra:
-  python:
-    source: "endpoints/casdoor_auth.py"
-    handler: "login"

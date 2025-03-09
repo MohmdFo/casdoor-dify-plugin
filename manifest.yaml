@@ -1,10 +1,50 @@
-name: casdoor_auth_plugin
-version: 0.1.0
-description: "A Dify extension plugin for Casdoor OAuth authentication."
-author: "MohmdFo <mohammad.fotouhi80@gmail.com>"
-permissions:
-  - Tools
-  - LLMs
-  - Apps
-  - persistent_storage
-  - endpoint_registration
+version: 0.0.1
+type: plugin
+author: mohammad-fotouhi
+name: casdoor-dify-plugin
+label:
+  en_US: casdoor-dify-plugin
+  ja_JP: casdoor-dify-plugin
+  zh_Hans: casdoor-dify-plugin
+  pt_BR: casdoor-dify-plugin
+description:
+  en_US: The Casdoor Dify Plugin integrates Casdoor OAuth-based authentication into the Dify ecosystem as an extension plugin. It provides endpoints to handle OAuth login, signup, and callback flows, enabling seamless user authentication via Casdoor.
+  ja_JP: The Casdoor Dify Plugin integrates Casdoor OAuth-based authentication into the Dify ecosystem as an extension plugin. It provides endpoints to handle OAuth login, signup, and callback flows, enabling seamless user authentication via Casdoor.
+  zh_Hans: The Casdoor Dify Plugin integrates Casdoor OAuth-based authentication into the Dify ecosystem as an extension plugin. It provides endpoints to handle OAuth login, signup, and callback flows, enabling seamless user authentication via Casdoor.
+  pt_BR: The Casdoor Dify Plugin integrates Casdoor OAuth-based authentication into the Dify ecosystem as an extension plugin. It provides endpoints to handle OAuth login, signup, and callback flows, enabling seamless user authentication via Casdoor.
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: true
+      llm: true
+      text_embedding: false
+      rerank: false
+      tts: false
+      speech2text: false
+      moderation: false
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  endpoints:
+    - group/casdoor-dify-plugin.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-03-09T09:57:41.6581836+03:30
+privacy: PRIVACY.md
+verified: false

@@ -1,0 +1,5 @@
+path: "/casdoor-dify-plugin/"
+method: "GET"
+extra:
+  python:
+    source: "endpoints/casdoor-dify-plugin.py"

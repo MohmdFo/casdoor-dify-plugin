@@ -1,12 +1,6 @@
-from flask import Flask
-from endpoints import casdoor_auth
+from dify_plugin import Plugin, DifyPluginEnv
 
-app = Flask(__name__)
+plugin = Plugin(DifyPluginEnv(MAX_REQUEST_TIMEOUT=120))
 
-# Register endpoints
-app.add_url_rule("/casdoor/login", view_func=casdoor_auth.login)
-app.add_url_rule("/casdoor/signup", view_func=casdoor_auth.signup)
-app.add_url_rule("/casdoor/callback", view_func=casdoor_auth.callback)
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+if __name__ == '__main__':
+    plugin.run()
