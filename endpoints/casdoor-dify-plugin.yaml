@@ -1,4 +1,4 @@
-path: "/casdoor-dify-plugin/"
+path: "/casdoor-login/"
 method: "GET"
 extra:
   python:
