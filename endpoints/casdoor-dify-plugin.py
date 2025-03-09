@@ -99,8 +99,9 @@ class CasdoorDifyPluginEndpoint(Endpoint):
         action = r.args.get("action", "login")  # Default to login if not provided
         logging.info(f"Received action: {action}")
 
-        # You can pass a custom redirect_uri via settings; otherwise use default.
-        redirect_uri = settings.get("redirect_uri", "http://localhost:8000/casdoor/callback")
+        # Use a custom redirect URI if provided; otherwise try to use the Referer header;
+        # if that's also unavailable, fall back to "https://cloud.dify.ai/"
+        redirect_uri = settings.get("redirect_uri") or r.headers.get("Referer") or "https://cloud.dify.ai/"
         logging.info(f"Using redirect URI: {redirect_uri}")
 
         if action == "login":
