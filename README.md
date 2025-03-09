@@ -57,6 +57,11 @@ CASDOOR_CLIENT_ID=your_client_id
 CASDOOR_CLIENT_SECRET=your_client_secret
 CASDOOR_ORG_NAME=your_organization_name
 CASDOOR_APP_NAME=your_app_name
+
+INSTALL_METHOD=remote
+REMOTE_INSTALL_HOST=debug.dify.ai
+REMOTE_INSTALL_PORT=5003
+REMOTE_INSTALL_KEY=********-****-****-****-************
 ```
 
 ## Running the Plugin Locally
